@@ -59,11 +59,48 @@ void Game::processInput()
 	{
 		isRunning = false;
 	}
+
+	//Paddle Move
+	if (keyboardState[SDL_SCANCODE_W])
+	{
+		paddleDirection = -1;
+	}
+	if (keyboardState[SDL_SCANCODE_S])
+	{
+		paddleDirection = 1;
+	}
 }
 
 void Game::update(float dt)
 {
+	//Paddle Move 
+	paddlePos += paddleVelocity * dt * paddleDirection;
+	if (paddlePos.y < paddleHeight / 2 - wallThickness)
+	{
+		paddlePos.y = paddleHeight / 2 + wallThickness;
+	}
+	if (paddlePos.y > window.GetHeight() - paddleHeight / 2 - wallThickness)
+	{
+		paddlePos.y = window.GetHeight() - paddleHeight / 2 - wallThickness;
+	}
 
+	//Ball Move
+	ballPos += ballVelocity * dt;
+	if (ballPos.y < ballSize / 2 + wallThickness)
+	{
+		ballPos.y = ballSize / 2 + wallThickness;
+		ballVelocity.y *= -1;
+	}
+	else if (ballPos.y > window.GetHeight() - ballSize / 2 - wallThickness)
+	{
+		ballPos.y = window.GetHeight() - ballSize / 2 - wallThickness;
+		ballVelocity.y *= -1;
+	}
+	if (ballPos.x > window.GetWidth() - ballSize / 2 - wallThickness)
+	{
+		ballPos.x = window.GetWidth() - ballSize / 2 - wallThickness;
+		ballVelocity.x *= -1;
+	}
 }
 
 void Game::render()
