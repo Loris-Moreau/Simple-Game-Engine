@@ -1,2 +1,4 @@
-﻿  Game.cpp
+﻿  Renderer.cpp
+  Window.cpp
+  Generating Code...
   Simple Game Engine.vcxproj -> E:\GitHub\Simple-Game-Engine\x64\Debug\Simple Game Engine.exe

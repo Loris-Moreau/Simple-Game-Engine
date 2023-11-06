@@ -6,12 +6,6 @@ bool Game::initialize()
 	bool isWindowInit = window.initialize();
 	bool isRendererInit = renderer.initialize(window);
 
-	int windowWidth = window.GetWidth();
-	int windowHeight = window.GetHeight();
-	topWall = { 0, 0, static_cast<float>(windowWidth), wallThickness };
-	bottomWall = { 0, windowHeight - wallThickness, static_cast<float>(windowWidth), wallThickness };
-	rightWall = { windowWidth - wallThickness, 0, wallThickness, static_cast<float>(windowHeight) };
-
 	return isWindowInit && isRendererInit; // Return bool && bool && bool ...to detect error
 }
 
@@ -28,6 +22,7 @@ void Game::processInput()
 			break;
 		}
 	}
+
 	// Keyboard state
 	const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
 	// Escape: quit game
@@ -35,75 +30,43 @@ void Game::processInput()
 	{
 		isRunning = false;
 	}
-	// Paddle move
-	if (keyboardState[SDL_SCANCODE_W])
-	{
-		paddleDirection = -1;
-	}
-	if (keyboardState[SDL_SCANCODE_S])
-	{
-		paddleDirection = 1;
-	}
 }
 
 void Game::update(float dt)
 {
-	// Paddle move
-	paddlePos += paddleVelocity * dt * paddleDirection;
-	if (paddlePos.y < paddleHeight / 2 + wallThickness)
+	// Update actors 
+	isUpdatingActors = true;
+	for (auto actor : actors)
 	{
-		paddlePos.y = paddleHeight / 2 + wallThickness;
+		actor->update(dt);
 	}
-	if (paddlePos.y > window.GetHeight() - paddleHeight / 2 - wallThickness)
+	isUpdatingActors = false;
+
+	// Move pending actors to actors
+	for (auto pendingActor : pendingActors)
 	{
-		paddlePos.y = window.GetHeight() - paddleHeight / 2 - wallThickness;
+		actors.emplace_back(pendingActor);
 	}
+	pendingActors.clear();
 
-	// Ball move
-	ballPos += ballVelocity * dt;
-	if (ballPos.y < ballSize / 2 + wallThickness) {
-		ballPos.y = ballSize / 2 + wallThickness;
-		ballVelocity.y *= -1;
-	}
-	else if (ballPos.y > window.GetHeight() - ballSize / 2 - wallThickness) {
-		ballPos.y = window.GetHeight() - ballSize / 2 - wallThickness;
-		ballVelocity.y *= -1;
-	}
-	if (ballPos.x > window.GetWidth() - ballSize / 2 - wallThickness) {
-		ballPos.x = window.GetWidth() - ballSize / 2 - wallThickness;
-		ballVelocity.x *= -1;
-	}
-
-	// Ball-Paddle collision
-	Vector2 diff = ballPos - paddlePos;
-	if (fabsf(diff.y) <= paddleHeight / 2
-		&& fabsf(diff.x) <= paddleWidth / 2 + ballSize / 2
-		&& ballVelocity.x < 0)
+	// Delete dead actors
+	vector<Actor*> deadActors;
+	for (auto actor : actors)
 	{
-		ballVelocity.x *= -1;
-		ballPos.x = paddlePos.x + paddleWidth / 2 + ballSize / 2;
+		if (actor->getState() == Actor::ActorState::Dead)
+		{
+			deadActors.emplace_back(actor);
+		}
 	}
-
-	// Restart automatically
-	if (ballPos.x < 0) {
-		ballVelocity.x *= -1;
-		ballPos.x = window.GetWidth() / 2.f;
+	for (auto deadActor : deadActors)
+	{
+		delete deadActor;
 	}
 }
 
 void Game::render()
 {
 	renderer.beginDraw();
-
-	renderer.drawRect(topWall);
-	renderer.drawRect(bottomWall);
-	renderer.drawRect(rightWall);
-
-	Rectangle ballRect = { ballPos.x - ballSize / 2, ballPos.y - ballSize / 2, ballSize, ballSize };
-	renderer.drawRect(ballRect);
-
-	Rectangle paddleRect = { paddlePos.x - paddleWidth / 2, paddlePos.y - paddleHeight / 2, paddleWidth, paddleHeight };
-	renderer.drawRect(paddleRect);
 
 	renderer.endDraw();
 }
@@ -115,9 +78,11 @@ void Game::loop()
 	while (isRunning)
 	{
 		float dt = timer.computeDeltaTime() / 1000.0f;
+
 		processInput();
 		update(dt);
 		render();
+
 		timer.delayTime();
 	}
 }
@@ -127,4 +92,35 @@ void Game::close()
 	renderer.close();
 	window.close();
 	SDL_Quit();
+}
+
+void Game::addActor(Actor* actor)
+{
+	if (isUpdatingActors)
+	{
+		pendingActors.emplace_back(actor);
+	}
+	else
+	{
+		actors.emplace_back(actor);
+	}
+}
+
+void Game::removeActor(Actor* actor)
+{
+	// Erase actor from the two vectors
+	auto iter = std::find(begin(pendingActors), end(pendingActors), actor);
+	if (iter != end(pendingActors))
+	{
+		// Swap to end of vector and pop off (avoid erase copies)
+		std::iter_swap(iter, end(pendingActors) - 1);
+		pendingActors.pop_back();
+	}
+
+	iter = std::find(begin(actors), end(actors), actor);
+	if (iter != end(actors))
+	{
+		std::iter_swap(iter, end(actors) - 1);
+		actors.pop_back();
+	}
 }

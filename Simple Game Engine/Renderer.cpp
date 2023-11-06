@@ -6,7 +6,7 @@ bool Renderer::initialize(Window& window)
 	SDLRenderer = SDL_CreateRenderer(window.getSDLWindow(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (!SDLRenderer)
 	{
-		Log::error(LogCategory::Video, "Failed to Create Renderer");
+		Log::error(LogCategory::Video, "Failed to create renderer");
 		return false;
 	}
 	return true;

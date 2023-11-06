@@ -17,8 +17,8 @@ public:
 
 	SDL_Window* getSDLWindow() const { return SDLWindow; } //const Correctness : getters do not modify the object
 	
-	int GetWidth() const { return width; }
-	int GetHeight() const { return height; }
+	int getWidth() const { return width; }
+	int getHeight() const { return height; }
 
 private:
 	SDL_Window* SDLWindow{ nullptr };

@@ -1,4 +1,5 @@
 #pragma once
+
 #include<SDL.h>
 
 #include"Rectangle.h"
@@ -23,4 +24,3 @@ private:
 	Renderer(const Renderer&) = delete;
 	Renderer& operator=(const Renderer&) = delete;
 };
-
