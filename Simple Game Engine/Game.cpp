@@ -9,6 +9,11 @@ bool Game::initialize()
 	return isWindowInit && isRendererInit; // Return bool && bool && bool ...to detect error
 }
 
+void Game::load()
+{
+	Assets::loadTexture(renderer, "Assets\Res_005-011\Ship01.png", "Ship01");
+}
+
 void Game::processInput()
 {
 	// SDL Event
@@ -85,6 +90,19 @@ void Game::loop()
 
 		timer.delayTime();
 	}
+}
+
+void Game::unload()
+{
+	//Delete Actors
+	//Because ~Actor calls RemoveActor, have to uze a Different Style Loop
+	while (!actors.empty())
+	{
+		delete actors.back();
+	}
+
+	//Ressources
+	Assets::clear;
 }
 
 void Game::close()

@@ -13,6 +13,7 @@ Texture Assets::loadTexture(Renderer& renderer, const string& filename, const st
 		loadError << "Textures " << name << " does not Exist in Assets Manager.";
 		Log::error(LogCategory::Application, loadError.str());
 	}
+	return textures[name];
 }
 
 void Assets::clear()

@@ -9,7 +9,7 @@ bool Window::initialize()
 		Log::error(LogCategory::Video, "Unable to Initialize SDL");
 		return false;
 	}
-	SDLWindow = SDL_CreateWindow("Death Pong", 100, 100, width, height, 0); //0 is a flag we will use later
+	SDLWindow = SDL_CreateWindow("Window of Eternity", 100, 100, width, height, 0); //0 is a flag we will use later
 	if (!SDLWindow)
 	{
 		Log::error(LogCategory::System, "Failed to create Window");

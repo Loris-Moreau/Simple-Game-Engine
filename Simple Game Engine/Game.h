@@ -6,6 +6,7 @@
 #include "Renderer.h"
 #include "Vector2.h"
 #include "Actor.h"
+#include "Assets.h"
 
 using std::vector;
 
@@ -31,7 +32,9 @@ private:
 
 public:
 	bool initialize();
+	void load();
 	void loop();
+	void unload();
 	void close();
 
 	void addActor(Actor* actor);
