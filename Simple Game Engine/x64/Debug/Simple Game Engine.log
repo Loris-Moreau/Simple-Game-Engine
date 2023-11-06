@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\main.cpp(27,2): warning C4551: function call missing argument list
+  Simple Game Engine.vcxproj -> C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\x64\Debug\Simple Game Engine.exe
