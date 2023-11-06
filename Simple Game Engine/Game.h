@@ -2,8 +2,6 @@
 #include "Window.h"
 #include "Renderer.h"
 #include "Vector2.h"
-#include "Timer.h"
-
 class Game
 {
 public:
@@ -16,19 +14,16 @@ public:
 	Game(const Game&) = delete;
 	Game& operator=(const Game&) = delete;
 	Game(Game&&) = delete;
-	Game& operator = (Game&&) = delete;
+	Game& operator=(Game&&) = delete;
 
 private:
 	Game() :
 		isRunning(true),
-		//pong stuff
-		ballPos({ 100,100 }),
-		ballVelocity({ 500,500 }),
-
-		paddlePos({ 50,100 }),
-		paddleVelocity({ 0,450 }),
+		ballPos({ 100, 100 }),
+		ballVelocity({ 500, 500 }),
+		paddlePos({ 50, 100 }),
+		paddleVelocity({ 0, 450 }),
 		paddleDirection(0),
-
 		wallThickness(10),
 		topWall(Rectangle()),
 		bottomWall(Rectangle()),
@@ -46,16 +41,13 @@ private:
 	void render();
 
 	bool isRunning;
-
 	Window window;
 	Renderer renderer;
 
-	//pong stuff	
 	Rectangle topWall;
 	Rectangle bottomWall;
 	Rectangle rightWall;
 	const float wallThickness = 10;
-
 
 	Vector2 ballPos;
 	Vector2 ballVelocity;
@@ -64,6 +56,6 @@ private:
 	Vector2 paddlePos;
 	Vector2 paddleVelocity;
 	const float paddleWidth = 10;
-	const float paddleHeight = 64;
+	const float paddleHeight = 96;
 	float paddleDirection;
 };

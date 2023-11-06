@@ -15,7 +15,7 @@ public:
 	bool initialize();
 	void close();
 
-	SDL_Window* getSDLWindow() const { return SDLWindow; } //const Correctness : gettersdo not modify the object
+	SDL_Window* getSDLWindow() const { return SDLWindow; } //const Correctness : getters do not modify the object
 	
 	int GetWidth() const { return width; }
 	int GetHeight() const { return height; }
