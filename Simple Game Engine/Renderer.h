@@ -10,6 +10,8 @@ class Renderer
 public:
 	Renderer() = default;
 
+	inline SDL_Renderer* toSDLRenderer() const { return SDLRenderer; }
+
 	bool initialize(Window& window);
 
 	void beginDraw();

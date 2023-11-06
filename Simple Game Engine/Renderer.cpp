@@ -1,5 +1,6 @@
 #include "Renderer.h"
 #include "Log.h"
+#include "SDL_image.h"
 
 bool Renderer::initialize(Window& window)
 {
@@ -9,6 +10,12 @@ bool Renderer::initialize(Window& window)
 		Log::error(LogCategory::Video, "Failed to create renderer");
 		return false;
 	}
+
+	if (IMG_Init(IMG_INIT_PNG) == 0)
+	{
+		Log::error(LogCategory::Video, "Unable to Initialize SDL_image");
+	}
+
 	return true;
 }
 

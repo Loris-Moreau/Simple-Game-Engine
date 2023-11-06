@@ -1,5 +1,6 @@
-#include "Actor.h"
 #include <algorithm>
+
+#include "Actor.h"
 #include "Game.h"
 #include "Component.h"
 
@@ -16,8 +17,8 @@ Actor::Actor() :
 Actor::~Actor()
 {
 	game.removeActor(this);
-	// Need to delete components
-	// Because ~Component calls RemoveComponent, need a different style loop
+	//Need to delete components
+	//Because ~Component calls RemoveComponent, need a different style loop
 
 	while (!components.empty())
 	{
@@ -64,8 +65,8 @@ void Actor::updateActor(float dt)
 
 void Actor::addComponent(Component* component)
 {
-	// Find the insertion point in the sorted vector
-	// (The first element with an order higher than me)
+	//Find the insertion point in the sorted vector
+	//(The first element with an order higher than me)
 	int myOrder = component->getUpdateOrder();
 	auto iter = begin(components);
 	for (; iter != end(components); ++iter)
@@ -76,7 +77,7 @@ void Actor::addComponent(Component* component)
 		}
 	}
 
-	// Inserts element before position of iterator
+	//Inserts element before position of iterator
 	components.insert(iter, component);
 }
 
