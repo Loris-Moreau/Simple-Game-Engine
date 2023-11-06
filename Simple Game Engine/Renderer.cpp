@@ -51,6 +51,7 @@ void Renderer::addSprite(SpriteComponent* sprite)
 {
 	// Insert the sprite at the right place in function of drawOrder
 	int spriteDrawOrder = sprite->getDrawOrder();
+
 	auto iter = begin(sprites);
 	for (; iter != end(sprites); ++iter)
 	{

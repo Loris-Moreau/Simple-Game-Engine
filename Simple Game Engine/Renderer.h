@@ -12,7 +12,7 @@ class Renderer
 public:
 	enum class Flip //Wrapper for SDL Sprite Flipping
 	{
-		none = SDL_FLIP_NONE,
+		None = SDL_FLIP_NONE,
 		Horizontal = SDL_FLIP_HORIZONTAL,
 		Vertical = SDL_FLIP_VERTICAL,
 	};

@@ -11,7 +11,13 @@ bool Game::initialize()
 
 void Game::load()
 {
-	Assets::loadTexture(renderer, "Assets\Res_005-011\Ship01.png", "Ship01");
+	Assets::loadTexture(renderer, "$(SolutionDir)..\Assets\Res_005-011\Ship01.png", "Ship01");
+	//GitHub\Simple-Game-Engine\Assets\Res_005-011\Ship01.png
+
+	auto actor = new Actor(); //Actor & Component are Created on the Heap. 
+							 //Because they are Managed by their Respective owner through constructor & destructor, we don't have to delete them.
+	auto sprite = new SpriteComponent(actor, Assets::getTexture("Ship01"));
+	actor->setPosition(Vector2{ 100, 100 });
 }
 
 void Game::processInput()
@@ -72,7 +78,7 @@ void Game::update(float dt)
 void Game::render()
 {
 	renderer.beginDraw();
-
+	renderer.draw();
 	renderer.endDraw();
 }
 

@@ -16,6 +16,17 @@ Texture Assets::loadTexture(Renderer& renderer, const string& filename, const st
 	return textures[name];
 }
 
+Texture& Assets::getTexture(const string& name)
+{
+	if (textures.find(name) == end(textures))
+	{
+		std::ostringstream loadError;
+		loadError << "Texture " << name << " does not exist in assets manager.";
+		Log::error(LogCategory::Application, loadError.str());
+	}
+	return textures[name];
+}
+
 void Assets::clear()
 {
 	//(Properly) Delete all Textures
