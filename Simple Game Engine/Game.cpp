@@ -6,23 +6,23 @@ bool Game::initialize()
 	bool isWindowInit = window.initialize();
 	bool isRendererInit = renderer.initialize(window);
 
-	return isWindowInit && isRendererInit; // Return bool && bool && bool ...to detect error
+	return isWindowInit && isRendererInit; //Return bool && bool && bool ...to detect error
 }
 
 void Game::load()
 {
-	Assets::loadTexture(renderer, "$(SolutionDir)..\Assets\Res_005-011\Ship01.png", "Ship01");
+	Assets::loadTexture(renderer, "$(SolutionDir)Assets\Res_005-011\Ship01.png", "ship01");
 	//GitHub\Simple-Game-Engine\Assets\Res_005-011\Ship01.png
 
 	auto actor = new Actor(); //Actor & Component are Created on the Heap. 
 							 //Because they are Managed by their Respective owner through constructor & destructor, we don't have to delete them.
-	auto sprite = new SpriteComponent(actor, Assets::getTexture("Ship01"));
+	auto sprite = new SpriteComponent(actor, Assets::getTexture("ship01"));
 	actor->setPosition(Vector2{ 100, 100 });
 }
 
 void Game::processInput()
 {
-	// SDL Event
+	//SDL Event
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
@@ -34,9 +34,9 @@ void Game::processInput()
 		}
 	}
 
-	// Keyboard state
+	//Keyboard state
 	const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
-	// Escape: quit game
+	//Escape : quit game
 	if (keyboardState[SDL_SCANCODE_ESCAPE])
 	{
 		isRunning = false;
@@ -45,7 +45,7 @@ void Game::processInput()
 
 void Game::update(float dt)
 {
-	// Update actors 
+	//Update actors 
 	isUpdatingActors = true;
 	for (auto actor : actors)
 	{
@@ -53,14 +53,14 @@ void Game::update(float dt)
 	}
 	isUpdatingActors = false;
 
-	// Move pending actors to actors
+	//Move pending actors to actors
 	for (auto pendingActor : pendingActors)
 	{
 		actors.emplace_back(pendingActor);
 	}
 	pendingActors.clear();
 
-	// Delete dead actors
+	//Delete dead actors
 	vector<Actor*> deadActors;
 	for (auto actor : actors)
 	{
@@ -132,11 +132,11 @@ void Game::addActor(Actor* actor)
 
 void Game::removeActor(Actor* actor)
 {
-	// Erase actor from the two vectors
+	//Erase actor from the two vectors
 	auto iter = std::find(begin(pendingActors), end(pendingActors), actor);
 	if (iter != end(pendingActors))
 	{
-		// Swap to end of vector and pop off (avoid erase copies)
+		//Swap to end of vector and pop off (avoid erase copies)
 		std::iter_swap(iter, end(pendingActors) - 1);
 		pendingActors.pop_back();
 	}

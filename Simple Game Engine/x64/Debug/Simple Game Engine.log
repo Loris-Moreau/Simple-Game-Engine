@@ -1,4 +1,10 @@
-﻿  Game.cpp
+﻿  Actor.cpp
+  Assets.cpp
+  Game.cpp
+E:\GitHub\Simple-Game-Engine\Simple Game Engine\Game.cpp(14,32): warning C4129: 'R': unrecognized character escape sequence
 E:\GitHub\Simple-Game-Engine\Simple Game Engine\Game.cpp(14,32): warning C4129: 'S': unrecognized character escape sequence
-E:\GitHub\Simple-Game-Engine\Simple Game Engine\Game.cpp(110,10): warning C4551: function call missing argument list
+E:\GitHub\Simple-Game-Engine\Simple Game Engine\Game.cpp(111,10): warning C4551: function call missing argument list
+  Main.cpp
+  SpriteComponent.cpp
+  Generating Code...
   Simple Game Engine.vcxproj -> E:\GitHub\Simple-Game-Engine\x64\Debug\Simple Game Engine.exe
