@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "Renderer.h"
 #include "Vector2.h"
+#include "Timer.h"
 
 class Game
 {
@@ -41,7 +42,7 @@ public:
 
 private:
 	void processInput();
-	void update();
+	void update(float dt);
 	void render();
 
 	bool isRunning;

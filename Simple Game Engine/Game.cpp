@@ -17,11 +17,18 @@ bool Game::initialize()
 
 void Game::loop()
 {
+	Timer timer;
+	float dt = 0;
+
 	while (isRunning)
 	{
+		float dt = timer.computeDeltaTime() / 1000.0f;
+
 		processInput();
-		update();
+		update(dt);
 		render();
+
+		timer.delayTime();
 	}
 }
 
@@ -54,7 +61,7 @@ void Game::processInput()
 	}
 }
 
-void Game::update()
+void Game::update(float dt)
 {
 
 }
