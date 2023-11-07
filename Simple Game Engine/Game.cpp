@@ -1,5 +1,9 @@
 #include "Game.h"
 #include "Timer.h"
+#include "SpriteComponent.h"
+#include "AnimSpriteComponent.h"
+#include "Assets.h"
+#include "BackgroundSpriteComponent.h"
 
 bool Game::initialize()
 {
@@ -11,13 +15,58 @@ bool Game::initialize()
 
 void Game::load()
 {
-	Assets::loadTexture(renderer, "$(SolutionDir)Assets\Res_005-011\Ship01.png", "ship01");
-	//GitHub\Simple-Game-Engine\Assets\Res_005-011\Ship01.png
+	//Load Textures
+	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Ship01.png", "Ship01");
+	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Ship02.png", "Ship02");
+	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Ship03.png", "Ship03");
+	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Ship04.png", "Ship04");
 
-	auto actor = new Actor(); //Actor & Component are Created on the Heap. 
+	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Farback01.png", "Farback01");
+	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Farback02.png", "Farback02");
+
+	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Stars.png", "Stars");
+
+	/*
+	//Singlie Sprite
+	auto actor = new Actor(); //Actor & Component are Created on the Heap.
 							 //Because they are Managed by their Respective owner through constructor & destructor, we don't have to delete them.
-	auto sprite = new SpriteComponent(actor, Assets::getTexture("ship01"));
+	auto sprite = new SpriteComponent(actor, Assets::getTexture("Ship01"));
 	actor->setPosition(Vector2{ 100, 100 });
+	*/
+
+	//Animated Sprite
+	vector<Texture*> animTextures
+	{
+		&Assets::getTexture("Ship01"),
+		&Assets::getTexture("Ship02"),
+		&Assets::getTexture("Ship03"),
+		&Assets::getTexture("Ship04")
+	};
+	Actor* ship = new Actor();
+	AnimSpriteComponent* animatedSprite = new AnimSpriteComponent(ship, animTextures);
+	ship->setPosition(Vector2{ 100,300 });
+
+	//Background : "Farback"
+	vector<Texture*> bgTexsFar
+	{
+		&Assets::getTexture("Farback01"),
+		&Assets::getTexture("Farback02")
+	};
+	Actor* bgFar = new Actor();
+	BackgroundSpriteComponent* bgSpritesFar = new BackgroundSpriteComponent(bgFar, bgTexsFar);
+	bgSpritesFar->setScrollSpeed(-100.0f);
+	
+	//Background : "Stars"
+	Actor* bgClose = new Actor();
+	vector<Texture*> bgTexsClose
+	{
+		&Assets::getTexture("Stars"),
+		&Assets::getTexture("Stars")
+	};
+	
+	BackgroundSpriteComponent* bgSpritesClose = new BackgroundSpriteComponent(bgClose, bgTexsClose);
+	bgSpritesClose->setScrollSpeed(-200.0f);
+
 }
 
 void Game::processInput()

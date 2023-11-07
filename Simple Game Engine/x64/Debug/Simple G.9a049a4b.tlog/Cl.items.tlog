@@ -1,6 +1,15 @@
+C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Actor.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\Actor.obj
+C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\AnimSpriteComponent.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\AnimSpriteComponent.obj
+C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Assets.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\Assets.obj
+C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\BackgroundSpriteComponent.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\BackgroundSpriteComponent.obj
+C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Component.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\Component.obj
 C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Game.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\Game.obj
 C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Log.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\Log.obj
-C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\main.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\main.obj
+C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Main.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\Main.obj
+C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Rectangle.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\Rectangle.obj
 C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Renderer.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\Renderer.obj
+C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\SpriteComponent.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\SpriteComponent.obj
+C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Texture.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\Texture.obj
 C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Timer.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\Timer.obj
+C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Vectro2.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\Vectro2.obj
 C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Window.cpp;C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\x64\Debug\Window.obj
