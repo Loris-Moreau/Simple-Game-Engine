@@ -1,13 +1,13 @@
 #pragma once
 
-#include <vector>
-
 #include "Window.h"
 #include "Renderer.h"
-#include "Vector2.h"
 #include "Actor.h"
 #include "Assets.h"
 #include "SpriteComponent.h"
+#include "Vector2.h"
+
+#include <vector>
 
 using std::vector;
 

@@ -1,6 +1,13 @@
-﻿  AnimSpriteComponent.cpp
+﻿  Actor.cpp
+  AnimSpriteComponent.cpp
+  Assets.cpp
   BackgroundSpriteComponent.cpp
   Game.cpp
 C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Game.cpp(160,10): warning C4551: function call missing argument list
+  Main.cpp
+  Renderer.cpp
+  SpriteComponent.cpp
+  Texture.cpp
+  Window.cpp
   Generating Code...
   Simple Game Engine.vcxproj -> C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\x64\Debug\Simple Game Engine.exe

@@ -16,7 +16,7 @@ void AnimSpriteComponent::setAnimTextures(const vector<Texture*>& texturesP)
 	animTextures = texturesP;
 	if (animTextures.size() > 0)
 	{
-		currentFrame = 0.0f;
+		currentFrame = 0.f;
 		setTexture(*animTextures[0]);
 	}
 }

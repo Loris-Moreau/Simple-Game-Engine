@@ -1,11 +1,15 @@
 #include "Renderer.h"
 #include "Log.h"
-
-#include "SDL_image.h"
-
-#include"Texture.h"
+#include "Texture.h"
 #include "Maths.h"
 #include "SpriteComponent.h"
+
+#include <SDL_image.h>
+
+Renderer::~Renderer()
+{
+
+}
 
 bool Renderer::initialize(Window& window)
 {
@@ -19,6 +23,7 @@ bool Renderer::initialize(Window& window)
 	if (IMG_Init(IMG_INIT_PNG) == 0)
 	{
 		Log::error(LogCategory::Video, "Unable to Initialize SDL_image");
+		return false;
 	}
 
 	return true;
@@ -109,7 +114,7 @@ void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcR
 		srcSDL,
 		&dstRect,
 		-Maths::toDegrees(rotation),
-		nullptr,		// rotation point, center by default
+		nullptr,	//Rotation point, center by default
 		SDL_FLIP_NONE);
 
 	delete srcSDL;

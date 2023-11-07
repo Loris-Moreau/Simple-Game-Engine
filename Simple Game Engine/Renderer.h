@@ -18,6 +18,7 @@ public:
 	};
 
 	Renderer() = default;
+	~Renderer();
 	Renderer(const Renderer&) = delete;
 	Renderer& operator=(const Renderer&) = delete;
 
@@ -31,7 +32,7 @@ public:
 	void addSprite(class SpriteComponent* sprite);
 	void removeSprite(class SpriteComponent* sprite);
 	void drawSprites();
-	void drawSprite(const Actor& actor, const class Texture& tex, Rectangle srcRect, Vector2 origin, Flip flip)const;
+	void drawSprite(const Actor& actor, const class Texture& tex, Rectangle srcRect, Vector2 origin, Flip flip) const;
 
 	SDL_Renderer* toSDLRenderer() const { return SDLRenderer; }
 	void close();

@@ -1,9 +1,10 @@
 #pragma once
+
 #include <SDL.h>
 
 //Screen Dimensions
-constexpr int SCREEN_WIDTH = 1024;
-constexpr int SCREEN_HEIGHT = 768;
+constexpr int WINDOW_WIDTH = 1024;
+constexpr int WINDOW_HEIGHT = 768;
 
 class Window
 {
@@ -23,7 +24,7 @@ public:
 private:
 	SDL_Window* SDLWindow{ nullptr };
 
-	int width{ SCREEN_WIDTH };
-	int height{ SCREEN_HEIGHT };
+	int width{ WINDOW_WIDTH };
+	int height{ WINDOW_HEIGHT };
 };
 

@@ -1,7 +1,8 @@
 #include "Game.h"
-#include "Timer.h"
+#include "Actor.h"
 #include "SpriteComponent.h"
 #include "AnimSpriteComponent.h"
+#include "Timer.h"
 #include "Assets.h"
 #include "BackgroundSpriteComponent.h"
 
@@ -34,7 +35,7 @@ void Game::load()
 	actor->setPosition(Vector2{ 100, 100 });
 	*/
 
-	//Animated Sprite
+	///Animated Sprite
 	vector<Texture*> animTextures
 	{
 		&Assets::getTexture("Ship01"),
@@ -46,7 +47,7 @@ void Game::load()
 	AnimSpriteComponent* animatedSprite = new AnimSpriteComponent(ship, animTextures);
 	ship->setPosition(Vector2{ 100,300 });
 
-	//Background : "Farback"
+	///Background : "Farback"
 	vector<Texture*> bgTexsFar
 	{
 		&Assets::getTexture("Farback01"),
@@ -56,7 +57,7 @@ void Game::load()
 	BackgroundSpriteComponent* bgSpritesFar = new BackgroundSpriteComponent(bgFar, bgTexsFar);
 	bgSpritesFar->setScrollSpeed(-100.0f);
 	
-	//Background : "Stars"
+	///Background : "Stars"
 	Actor* bgClose = new Actor();
 	vector<Texture*> bgTexsClose
 	{
@@ -64,9 +65,8 @@ void Game::load()
 		&Assets::getTexture("Stars")
 	};
 	
-	BackgroundSpriteComponent* bgSpritesClose = new BackgroundSpriteComponent(bgClose, bgTexsClose);
+	BackgroundSpriteComponent* bgSpritesClose = new BackgroundSpriteComponent(bgClose, bgTexsClose,50);
 	bgSpritesClose->setScrollSpeed(-200.0f);
-
 }
 
 void Game::processInput()
@@ -185,7 +185,7 @@ void Game::removeActor(Actor* actor)
 	auto iter = std::find(begin(pendingActors), end(pendingActors), actor);
 	if (iter != end(pendingActors))
 	{
-		//Swap to end of vector and pop off (avoid erase copies)
+		//Swap to end of vector and pop off (avoid Erase Copies)
 		std::iter_swap(iter, end(pendingActors) - 1);
 		pendingActors.pop_back();
 	}

@@ -6,7 +6,7 @@
 
 using std::vector;
 
-class AnimSpriteComponent : public SpriteComponent
+class AnimSpriteComponent :		public SpriteComponent
 {
 public:
 	AnimSpriteComponent(Actor* ownerP, const vector<Texture*>& textureP, int drawOrderP = 100);

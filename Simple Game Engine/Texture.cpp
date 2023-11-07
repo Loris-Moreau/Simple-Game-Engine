@@ -3,6 +3,11 @@
 
 #include <SDL_image.h>
 
+Texture::~Texture()
+{
+
+}
+
 void Texture::unload()
 {
 	if (SDLTexture)
@@ -18,7 +23,7 @@ bool Texture::load(Renderer& renderer, const string& filenameP)
 	SDL_Surface* surf = IMG_Load(filename.c_str()); //SDL Load a Surface, wich is on an array of pixel color, then Convert it to a GPU Optimized Texture
 	if (!surf)
 	{
-		Log::error(LogCategory::Application, "Failed to Load Texture File");
+		Log::error(LogCategory::Application, "Failed to Load Texture File" + filename);
 		return false;
 	}
 	width = surf->w;

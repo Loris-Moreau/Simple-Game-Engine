@@ -10,7 +10,7 @@ class Texture
 {
 public:
 	Texture() = default;
-	~Texture() = default;
+	~Texture();
 
 	void unload();
 	bool load(Renderer& rendererP, const string& filenameP);
