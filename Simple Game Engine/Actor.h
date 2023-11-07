@@ -3,6 +3,8 @@
 #include <vector>
 #include "Vector2.h"
 
+#include "Maths.h"
+
 using std::vector;
 
 class Game;
@@ -26,6 +28,8 @@ public:
 	const Vector2 getPosition() const { return position; }
 	const float getScale() const { return scale; }
 	const float getRotation() const { return rotation; }
+
+	Vector2 getForward() const { return Vector2(Maths::cos(rotation), -Maths::sin(rotation)); }
 
 	void setPosition(Vector2 positionP);
 	void setScale(float scaleP);
