@@ -6,6 +6,7 @@
 #include "Assets.h"
 #include "BackgroundSpriteComponent.h"
 #include "Astroid.h"
+#include "Ship.h"
 
 bool Game::initialize()
 {
@@ -25,7 +26,10 @@ void Game::load()
 
 	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Astroid.png", "Astroid");
 
-			//BackGround
+	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Ship.png", "Ship");
+	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Laser.png", "Laser");
+
+	//BackGround
 	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Farback01.png", "Farback01");
 	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Farback02.png", "Farback02");
 
@@ -39,7 +43,8 @@ void Game::load()
 	actor->setPosition(Vector2{ 100, 100 });
 	*/
 
-	///Animated Sprite (Ship)
+	/*
+	//Animated Sprite (Ship)
 	vector<Texture*> animTextures
 	{
 		&Assets::getTexture("Ship01"),
@@ -50,6 +55,11 @@ void Game::load()
 	Actor* ship = new Actor();
 	AnimSpriteComponent* animatedSprite = new AnimSpriteComponent(ship, animTextures);
 	ship->setPosition(Vector2{ 100,300 });
+	*/
+
+	//Controlled Ship
+	Ship* ship = new Ship();
+	ship->setPosition(Vector2{ 100, 300 });
 
 	//Asteroids
 	const int asteroidNumber = 20;
@@ -63,7 +73,7 @@ void Game::load()
 	vector<Texture*> bgTexsFar 
 	{
 		&Assets::getTexture("Farback01"),
-			& Assets::getTexture("Farback02")
+		&Assets::getTexture("Farback02")
 	};
 	Actor* bgFar = new Actor();
 	BackgroundSpriteComponent* bgSpritesFar = new BackgroundSpriteComponent(bgFar, bgTexsFar);
@@ -74,7 +84,7 @@ void Game::load()
 	std::vector<Texture*> bgTexsClose 
 	{
 		&Assets::getTexture("Stars"),
-			& Assets::getTexture("Stars")
+		&Assets::getTexture("Stars")
 	};
 
 	BackgroundSpriteComponent* bgSpritesClose = new BackgroundSpriteComponent(bgClose, bgTexsClose, 50);
@@ -83,7 +93,7 @@ void Game::load()
 
 void Game::processInput()
 {
-	//SDL Event
+	// SDL Event
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
@@ -95,18 +105,25 @@ void Game::processInput()
 		}
 	}
 
-	//Keyboard state
+	// Keyboard state
 	const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
-	//Escape : quit game
+	// Escape: quit game
 	if (keyboardState[SDL_SCANCODE_ESCAPE])
 	{
 		isRunning = false;
 	}
+	// Actor input
+	isUpdatingActors = true;
+	for (auto actor : actors)
+	{
+		actor->processInput(keyboardState);
+	}
+	isUpdatingActors = false;
 }
 
 void Game::update(float dt)
 {
-	//Update actors 
+	// Update actors 
 	isUpdatingActors = true;
 	for (auto actor : actors)
 	{
@@ -114,14 +131,14 @@ void Game::update(float dt)
 	}
 	isUpdatingActors = false;
 
-	//Move pending actors to actors
+	// Move pending actors to actors
 	for (auto pendingActor : pendingActors)
 	{
 		actors.emplace_back(pendingActor);
 	}
 	pendingActors.clear();
 
-	//Delete dead actors
+	// Delete dead actors
 	vector<Actor*> deadActors;
 	for (auto actor : actors)
 	{
@@ -141,6 +158,25 @@ void Game::render()
 	renderer.beginDraw();
 	renderer.draw();
 	renderer.endDraw();
+}
+
+vector<Astroid*>& Game::getAstroids()
+{
+	return astroids;
+}
+
+void Game::addAstroid(Astroid* astroid)
+{
+	astroids.emplace_back(astroid);
+}
+
+void Game::removeAstroid(Astroid* astroid)
+{
+	auto iter = std::find(begin(astroids), end(astroids), astroid);
+	if (iter != astroids.end())
+	{
+		astroids.erase(iter);
+	}
 }
 
 void Game::loop()
@@ -193,11 +229,11 @@ void Game::addActor(Actor* actor)
 
 void Game::removeActor(Actor* actor)
 {
-	//Erase actor from the two vectors
+	// Erase actor from the two vectors
 	auto iter = std::find(begin(pendingActors), end(pendingActors), actor);
 	if (iter != end(pendingActors))
 	{
-		//Swap to end of vector and pop off (avoid Erase Copies)
+		// Swap to end of vector and pop off (avoid erase copies)
 		std::iter_swap(iter, end(pendingActors) - 1);
 		pendingActors.pop_back();
 	}

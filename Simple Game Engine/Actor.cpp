@@ -1,6 +1,7 @@
+#include "Actor.h"
+
 #include <algorithm>
 
-#include "Actor.h"
 #include "Game.h"
 #include "Component.h"
 #include "Maths.h"
@@ -18,9 +19,8 @@ Actor::Actor() :
 Actor::~Actor()
 {
 	game.removeActor(this);
-	//Need to delete components
-	//Because ~Component calls RemoveComponent, need a different style loop
-
+	// Need to delete components
+	// Because ~Component calls RemoveComponent, need a different style loop
 	while (!components.empty())
 	{
 		delete components.back();
@@ -42,9 +42,30 @@ void Actor::setRotation(float rotationP)
 	rotation = rotationP;
 }
 
+void Actor::setState(ActorState stateP)
+{
+	state = stateP;
+}
+
 Vector2 Actor::getForward() const
 {
 	return Vector2(Maths::cos(rotation), -Maths::sin(rotation));
+}
+
+void Actor::processInput(const Uint8* keyState)
+{
+	if (state == Actor::ActorState::Active)
+	{
+		for (auto component : components)
+		{
+			component->processInput(keyState);
+		}
+		actorInput(keyState);
+	}
+}
+
+void Actor::actorInput(const Uint8* keyState)
+{
 }
 
 void Actor::update(float dt)
@@ -71,8 +92,8 @@ void Actor::updateActor(float dt)
 
 void Actor::addComponent(Component* component)
 {
-	//Find the insertion point in the sorted vector
-	//(The first element with an order higher than me)
+	// Find the insertion point in the sorted vector
+	// (The first element with a order higher than me)
 	int myOrder = component->getUpdateOrder();
 	auto iter = begin(components);
 	for (; iter != end(components); ++iter)
@@ -83,7 +104,7 @@ void Actor::addComponent(Component* component)
 		}
 	}
 
-	//Inserts element before position of iterator
+	// Inserts element before position of iterator
 	components.insert(iter, component);
 }
 

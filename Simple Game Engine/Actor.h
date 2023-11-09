@@ -3,6 +3,8 @@
 #include <vector>
 #include "Vector2.h"
 
+#include <SDL_stdinc.h>
+
 using std::vector;
 
 class Game;
@@ -11,6 +13,7 @@ class Component;
 class Actor
 {
 public:
+
 	enum class ActorState
 	{
 		Active, Paused, Dead
@@ -30,8 +33,12 @@ public:
 	void setPosition(Vector2 positionP);
 	void setScale(float scaleP);
 	void setRotation(float rotationP);
+	void setState(ActorState stateP);
 
 	Vector2 getForward() const;
+
+	void processInput(const Uint8* keyState);
+	virtual void actorInput(const Uint8* keyState);
 
 	void update(float dt);
 	void updateComponents(float dt);

@@ -25,7 +25,7 @@ public:
 	void draw(Renderer& renderer) override;
 
 private:
-	//Struct to encapsulate each bg image and its offset
+	// Struct to encapsulate each bg image and its offset
 	struct BGTexture
 	{
 		BGTexture(Texture& t, Vector2 o) : texture(t), offset(o) {}
