@@ -1,10 +1,13 @@
 #include "Game.h"
+
+#include "Timer.h"
+
 #include "Actor.h"
 #include "SpriteComponent.h"
 #include "AnimSpriteComponent.h"
-#include "Timer.h"
-#include "Assets.h"
 #include "BackgroundSpriteComponent.h"
+
+#include "Assets.h"
 #include "Astroid.h"
 #include "Ship.h"
 
