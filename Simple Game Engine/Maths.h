@@ -1,4 +1,5 @@
 #pragma once
+
 #include <limits>
 #include <cmath>
 
@@ -9,8 +10,10 @@ namespace Maths
 	const float twoPi = pi * 2.0f;
 	const float piOverTwo = pi / 2.0f;
 
-	float infinity = std::numeric_limits<float>::infinity();
-	float negInfinity = -std::numeric_limits<float>::infinity();
+	//inline float infinity(std::numeric_limits<float>::infinity());
+	//inline float negInfinity(-std::numeric_limits<float>::infinity());
+	const float infinity = std::numeric_limits<float>::infinity();
+	const float negInfinity = -std::numeric_limits<float>::infinity();
 
 	inline float toRadians(float degrees)
 	{

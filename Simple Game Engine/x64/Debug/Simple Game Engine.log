@@ -1,36 +1,5 @@
-﻿  Actor.cpp
-  AnimSpriteComponent.cpp
-  Assets.cpp
-  BackgroundSpriteComponent.cpp
-  Component.cpp
+﻿  Asteroid.cpp
   Game.cpp
-C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Game.cpp(160,10): warning C4551: function call missing argument list
-  Main.cpp
-  MoveComponent.cpp
-  Renderer.cpp
-  SpriteComponent.cpp
-  Texture.cpp
+C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Game.cpp(171,10): warning C4551: function call missing argument list
   Generating Code...
-AnimSpriteComponent.obj : error LNK2005: "float Maths::infinity" (?infinity@Maths@@3MA) already defined in Actor.obj
-AnimSpriteComponent.obj : error LNK2005: "float Maths::negInfinity" (?negInfinity@Maths@@3MA) already defined in Actor.obj
-Assets.obj : error LNK2005: "float Maths::infinity" (?infinity@Maths@@3MA) already defined in Actor.obj
-Assets.obj : error LNK2005: "float Maths::negInfinity" (?negInfinity@Maths@@3MA) already defined in Actor.obj
-BackgroundSpriteComponent.obj : error LNK2005: "float Maths::infinity" (?infinity@Maths@@3MA) already defined in Actor.obj
-BackgroundSpriteComponent.obj : error LNK2005: "float Maths::negInfinity" (?negInfinity@Maths@@3MA) already defined in Actor.obj
-Component.obj : error LNK2005: "float Maths::infinity" (?infinity@Maths@@3MA) already defined in Actor.obj
-Component.obj : error LNK2005: "float Maths::negInfinity" (?negInfinity@Maths@@3MA) already defined in Actor.obj
-Game.obj : error LNK2005: "float Maths::infinity" (?infinity@Maths@@3MA) already defined in Actor.obj
-Game.obj : error LNK2005: "float Maths::negInfinity" (?negInfinity@Maths@@3MA) already defined in Actor.obj
-Main.obj : error LNK2005: "float Maths::infinity" (?infinity@Maths@@3MA) already defined in Actor.obj
-Main.obj : error LNK2005: "float Maths::negInfinity" (?negInfinity@Maths@@3MA) already defined in Actor.obj
-MoveComponent.obj : error LNK2005: "float Maths::infinity" (?infinity@Maths@@3MA) already defined in Actor.obj
-MoveComponent.obj : error LNK2005: "float Maths::negInfinity" (?negInfinity@Maths@@3MA) already defined in Actor.obj
-Renderer.obj : error LNK2005: "float Maths::infinity" (?infinity@Maths@@3MA) already defined in Actor.obj
-Renderer.obj : error LNK2005: "float Maths::negInfinity" (?negInfinity@Maths@@3MA) already defined in Actor.obj
-SpriteComponent.obj : error LNK2005: "float Maths::infinity" (?infinity@Maths@@3MA) already defined in Actor.obj
-SpriteComponent.obj : error LNK2005: "float Maths::negInfinity" (?negInfinity@Maths@@3MA) already defined in Actor.obj
-Texture.obj : error LNK2005: "float Maths::infinity" (?infinity@Maths@@3MA) already defined in Actor.obj
-Texture.obj : error LNK2005: "float Maths::negInfinity" (?negInfinity@Maths@@3MA) already defined in Actor.obj
-Vectro2.obj : error LNK2005: "float Maths::infinity" (?infinity@Maths@@3MA) already defined in Actor.obj
-Vectro2.obj : error LNK2005: "float Maths::negInfinity" (?negInfinity@Maths@@3MA) already defined in Actor.obj
-C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\x64\Debug\Simple Game Engine.exe : fatal error LNK1169: one or more multiply defined symbols found
+  Simple Game Engine.vcxproj -> C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\x64\Debug\Simple Game Engine.exe

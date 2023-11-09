@@ -5,6 +5,7 @@
 #include "Timer.h"
 #include "Assets.h"
 #include "BackgroundSpriteComponent.h"
+#include "Asteroid.h"
 
 bool Game::initialize()
 {
@@ -22,6 +23,9 @@ void Game::load()
 	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Ship03.png", "Ship03");
 	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Ship04.png", "Ship04");
 
+	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Asteroid.png", "Asteroid");
+
+			//BackGround
 	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Farback01.png", "Farback01");
 	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Farback02.png", "Farback02");
 
@@ -35,7 +39,7 @@ void Game::load()
 	actor->setPosition(Vector2{ 100, 100 });
 	*/
 
-	///Animated Sprite
+	///Animated Sprite (Ship)
 	vector<Texture*> animTextures
 	{
 		&Assets::getTexture("Ship01"),
@@ -46,6 +50,13 @@ void Game::load()
 	Actor* ship = new Actor();
 	AnimSpriteComponent* animatedSprite = new AnimSpriteComponent(ship, animTextures);
 	ship->setPosition(Vector2{ 100,300 });
+
+	//Asteroids
+	const int asteroidNumber = 20;
+	for (int i = 0; i < asteroidNumber; ++i)
+	{
+		new Asteroid();
+	}
 
 	///Background : "Farback"
 	vector<Texture*> bgTexsFar
