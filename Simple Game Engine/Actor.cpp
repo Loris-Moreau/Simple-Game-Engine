@@ -3,6 +3,7 @@
 #include "Actor.h"
 #include "Game.h"
 #include "Component.h"
+#include "Maths.h"
 
 Actor::Actor() :
 	state(Actor::ActorState::Active),
@@ -39,6 +40,11 @@ void Actor::setScale(float scaleP)
 void Actor::setRotation(float rotationP)
 {
 	rotation = rotationP;
+}
+
+Vector2 Actor::getForward() const
+{
+	return Vector2(Maths::cos(rotation), -Maths::sin(rotation));
 }
 
 void Actor::update(float dt)

@@ -37,19 +37,20 @@ struct Vector2
 		return Vector2(a + f * (b - a));
 	}
 
-	Vector2& operator += (const Vector2& right)
+	Vector2& operator+=(const Vector2& right)
 	{
 		x += right.x;
 		y += right.y;
+
 		return *this;
 	}
 
-	friend Vector2 operator + (const Vector2& left, const Vector2& right)
+	friend Vector2 operator+(const Vector2& left, const Vector2& right)
 	{
 		return Vector2(left.x + right.x, left.y + right.y);
 	}
 
-	Vector2& operator -= (const Vector2& right)
+	Vector2& operator-=(const Vector2& right)
 	{
 		x -= right.x;
 		y -= right.y;
@@ -57,12 +58,12 @@ struct Vector2
 		return *this;
 	}
 
-	friend Vector2 operator - (const Vector2& left, const Vector2& right)
+	friend Vector2 operator-(const Vector2& left, const Vector2& right)
 	{
 		return Vector2(left.x - right.x, left.y - right.y);
 	}
 
-	Vector2& operator *= (float scalar)
+	Vector2& operator*=(float scalar)
 	{
 		x *= scalar;
 		y *= scalar;
@@ -70,12 +71,12 @@ struct Vector2
 		return *this;
 	}
 
-	friend Vector2 operator * (const Vector2& vec, float scalar)
+	friend Vector2 operator*(const Vector2& vec, float scalar)
 	{
 		return Vector2(vec.x * scalar, vec.y * scalar);
 	}
 
-	friend Vector2 operator * (float scalar, const Vector2& vec)
+	friend Vector2 operator*(float scalar, const Vector2& vec)
 	{
 		return Vector2(vec.x * scalar, vec.y * scalar);
 	}

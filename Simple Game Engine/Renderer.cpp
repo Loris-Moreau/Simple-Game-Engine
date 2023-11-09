@@ -19,13 +19,11 @@ bool Renderer::initialize(Window& window)
 		Log::error(LogCategory::Video, "Failed to create renderer");
 		return false;
 	}
-
 	if (IMG_Init(IMG_INIT_PNG) == 0)
 	{
-		Log::error(LogCategory::Video, "Unable to Initialize SDL_image");
+		Log::error(LogCategory::Video, "Unable to initialize SDL_image");
 		return false;
 	}
-
 	return true;
 }
 
@@ -45,30 +43,11 @@ void Renderer::endDraw()
 	SDL_RenderPresent(SDLRenderer);
 }
 
-void Renderer::drawRect(Rectangle& rect) const
+void Renderer::drawRect(const Rectangle& rect) const
 {
 	SDL_SetRenderDrawColor(SDLRenderer, 255, 255, 255, 255);
 	SDL_Rect SDLRect = rect.toSDLRect();
 	SDL_RenderFillRect(SDLRenderer, &SDLRect);
-}
-
-void Renderer::addSprite(SpriteComponent* sprite)
-{
-	// Insert the sprite at the right place in function of drawOrder
-	int spriteDrawOrder = sprite->getDrawOrder();
-
-	auto iter = begin(sprites);
-	for (; iter != end(sprites); ++iter)
-	{
-		if (spriteDrawOrder < (*iter)->getDrawOrder()) break;
-	}
-	sprites.insert(iter, sprite);
-}
-
-void Renderer::removeSprite(SpriteComponent* sprite)
-{
-	auto iter = std::find(begin(sprites), end(sprites), sprite);
-	sprites.erase(iter);
 }
 
 void Renderer::drawSprites()
@@ -81,7 +60,6 @@ void Renderer::drawSprites()
 
 void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcRect, Vector2 origin, Flip flip) const
 {
-
 	SDL_Rect dstRect;
 
 	Vector2 position = actor.getPosition();
@@ -97,10 +75,10 @@ void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcR
 	dstRect.y = static_cast<int>(position.y - origin.y);
 
 	SDL_Rect* srcSDL = nullptr;
-
 	if (srcRect != Rectangle::nullRect)
 	{
-		srcSDL = new SDL_Rect{
+		srcSDL = new SDL_Rect
+		{
 			Maths::round(srcRect.x),
 			Maths::round(srcRect.y),
 			Maths::round(srcRect.width),
@@ -114,7 +92,7 @@ void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcR
 		srcSDL,
 		&dstRect,
 		-Maths::toDegrees(rotation),
-		nullptr,	//Rotation point, center by default
+		nullptr,		// rotation point, center by default
 		SDL_FLIP_NONE);
 
 	delete srcSDL;
@@ -123,4 +101,22 @@ void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcR
 void Renderer::close()
 {
 	SDL_DestroyRenderer(SDLRenderer);
+}
+
+void Renderer::addSprite(SpriteComponent* sprite)
+{
+	// Insert the sprite at the right place in function of drawOrder
+	int spriteDrawOrder = sprite->getDrawOrder();
+	auto iter = begin(sprites);
+	for (; iter != end(sprites); ++iter)
+	{
+		if (spriteDrawOrder < (*iter)->getDrawOrder()) break;
+	}
+	sprites.insert(iter, sprite);
+}
+
+void Renderer::removeSprite(SpriteComponent* sprite)
+{
+	auto iter = std::find(begin(sprites), end(sprites), sprite);
+	sprites.erase(iter);
 }

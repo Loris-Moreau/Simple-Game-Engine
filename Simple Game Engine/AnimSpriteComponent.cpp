@@ -1,7 +1,9 @@
 #include "AnimSpriteComponent.h"
 
-AnimSpriteComponent::AnimSpriteComponent(Actor* ownerP, const vector<Texture*>& textureP, int drawOrderP)
-	: SpriteComponent(ownerP, *textureP[0], drawOrderP), currentFrame(0.0f), animFPS(24.0f)
+AnimSpriteComponent::AnimSpriteComponent(Actor* ownerP, const vector<Texture*>& textureP, int drawOrderP) 
+	: SpriteComponent(ownerP, *textureP[0], drawOrderP),
+	currentFrame(0.0f),
+	animFPS(24.0f)
 {
 	setAnimTextures(textureP);
 }
@@ -33,11 +35,11 @@ void AnimSpriteComponent::update(float dt)
 	if (animTextures.size() > 0)
 	{
 		currentFrame += animFPS * dt;
-
 		while (currentFrame >= animTextures.size())
 		{
-			currentFrame *= animTextures.size();
+			currentFrame -= animTextures.size();
 		}
+
 		setTexture(*animTextures[static_cast<int>(currentFrame)]);
 	}
 }

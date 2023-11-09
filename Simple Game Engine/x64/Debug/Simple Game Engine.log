@@ -1,5 +1,6 @@
-﻿  Asteroid.cpp
-  Game.cpp
-C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Game.cpp(171,10): warning C4551: function call missing argument list
+﻿  Game.cpp
+C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\Simple Game Engine\Game.cpp(172,10): warning C4551: function call missing argument list
+  Log.cpp
+  Vectro2.cpp
   Generating Code...
   Simple Game Engine.vcxproj -> C:\Users\loris.moreau\Documents\GitHub\Simple Game Engine\x64\Debug\Simple Game Engine.exe

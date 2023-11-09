@@ -9,7 +9,7 @@ SpriteComponent::SpriteComponent(Actor* ownerP, Texture& textureP, int drawOrder
 	texWidth(textureP.getWidth()),
 	texHeight(textureP.getHeight())
 {
-	owner.getGame().getRenderer().addSprite(this); //Constructor & Destructor Automatically add or Remove the SpriteComponent to the Renderer's List
+	owner.getGame().getRenderer().addSprite(this);
 }
 
 SpriteComponent::~SpriteComponent()
@@ -25,6 +25,6 @@ void SpriteComponent::setTexture(const Texture& textureP)
 
 void SpriteComponent::draw(Renderer& renderer)
 {
-	Vector2 origin{ texWidth / 2.f, texHeight / 2.f }; //Drawn From the Center Point
+	Vector2 origin{ texWidth / 2.f, texHeight / 2.f };
 	renderer.drawSprite(owner, texture, Rectangle::nullRect, origin, Renderer::Flip::None);
 }

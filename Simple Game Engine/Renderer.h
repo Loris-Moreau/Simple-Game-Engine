@@ -20,7 +20,7 @@ public:
 	Renderer() = default;
 	~Renderer();
 	Renderer(const Renderer&) = delete;
-	Renderer& operator=(const Renderer&) = delete;
+	Renderer& operator = (const Renderer&) = delete;
 
 	bool initialize(Window& window);
 
@@ -28,7 +28,7 @@ public:
 	void draw();
 	void endDraw();
 
-	void drawRect(Rectangle& rect) const; //const Correctness
+	void drawRect(const Rectangle& rect) const; //const Correctness
 	void addSprite(class SpriteComponent* sprite);
 	void removeSprite(class SpriteComponent* sprite);
 	void drawSprites();

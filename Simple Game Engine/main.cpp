@@ -6,9 +6,7 @@ int main(int argc, char** argv)
 	if (isGameInit)
 	{
 		Game::instance().load();
-
 		Game::instance().loop();
-
 		Game::instance().unload();
 	}
 

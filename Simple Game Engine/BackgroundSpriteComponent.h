@@ -1,8 +1,9 @@
 #pragma once
 
-#include"SpriteComponent.h"
+#include "SpriteComponent.h"
 
-#include<vector>
+#include <vector>
+
 using std::vector;
 
 class BackgroundSpriteComponent : public SpriteComponent
@@ -15,19 +16,19 @@ public:
 	BackgroundSpriteComponent& operator=(const BackgroundSpriteComponent&) = delete;
 
 	float getScrollSpeed() const { return scrollSpeed; }
-	void setTextures(const vector<Texture*>& texturesP);
-	void setScreenSize (const Vector2& screenSizeP);
-	void setScrollSpeed (float scrollSpeedP);
 
+	void setTextures(const vector<Texture*>& textures);
+	void setScreenSize(const Vector2& screenSizeP);
+	void setScrollSpeed(float scrollSpeedP);
 
 	void update(float dt) override;
 	void draw(Renderer& renderer) override;
 
 private:
-	//Struct to Encapsulate each BG image and it's Offset
+	//Struct to encapsulate each bg image and its offset
 	struct BGTexture
 	{
-		BGTexture(Texture& t, Vector2 o) :texture(t), offset(o) {}
+		BGTexture(Texture& t, Vector2 o) : texture(t), offset(o) {}
 		Texture& texture;
 		Vector2 offset;
 	};

@@ -5,7 +5,7 @@
 #include "Timer.h"
 #include "Assets.h"
 #include "BackgroundSpriteComponent.h"
-#include "Asteroid.h"
+#include "Astroid.h"
 
 bool Game::initialize()
 {
@@ -23,7 +23,7 @@ void Game::load()
 	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Ship03.png", "Ship03");
 	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Ship04.png", "Ship04");
 
-	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Asteroid.png", "Asteroid");
+	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Astroid.png", "Astroid");
 
 			//BackGround
 	Assets::loadTexture(renderer, "..\\Assets\\Res_005-011\\Farback01.png", "Farback01");
@@ -55,28 +55,29 @@ void Game::load()
 	const int asteroidNumber = 20;
 	for (int i = 0; i < asteroidNumber; ++i)
 	{
-		new Asteroid();
+		new Astroid();
 	}
 
-	///Background : "Farback"
-	vector<Texture*> bgTexsFar
+	// Background
+	// Create the "far back" background
+	vector<Texture*> bgTexsFar 
 	{
 		&Assets::getTexture("Farback01"),
-		&Assets::getTexture("Farback02")
+			& Assets::getTexture("Farback02")
 	};
 	Actor* bgFar = new Actor();
 	BackgroundSpriteComponent* bgSpritesFar = new BackgroundSpriteComponent(bgFar, bgTexsFar);
 	bgSpritesFar->setScrollSpeed(-100.0f);
-	
-	///Background : "Stars"
+
+	// Create the closer background
 	Actor* bgClose = new Actor();
-	vector<Texture*> bgTexsClose
+	std::vector<Texture*> bgTexsClose 
 	{
 		&Assets::getTexture("Stars"),
-		&Assets::getTexture("Stars")
+			& Assets::getTexture("Stars")
 	};
-	
-	BackgroundSpriteComponent* bgSpritesClose = new BackgroundSpriteComponent(bgClose, bgTexsClose,50);
+
+	BackgroundSpriteComponent* bgSpritesClose = new BackgroundSpriteComponent(bgClose, bgTexsClose, 50);
 	bgSpritesClose->setScrollSpeed(-200.0f);
 }
 
@@ -161,7 +162,7 @@ void Game::loop()
 void Game::unload()
 {
 	//Delete Actors
-	//Because ~Actor calls RemoveActor, have to uze a Different Style Loop
+	//Because ~Actor calls RemoveActor, have to use a Different Style Loop
 	while (!actors.empty())
 	{
 		delete actors.back();

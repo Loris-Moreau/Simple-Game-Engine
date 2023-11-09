@@ -28,10 +28,7 @@ public:
 	Renderer& getRenderer() { return renderer; }
 
 private:
-	Game() : 
-		isRunning(true), 
-		isUpdatingActors(false) 
-	{}
+	Game() : isRunning(true), isUpdatingActors(false) {}
 
 public:
 	bool initialize();
