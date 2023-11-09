@@ -208,7 +208,7 @@ void Game::unload()
 	}
 
 	//Ressources
-	Assets::clear;
+	Assets::clear();
 }
 
 void Game::close()
